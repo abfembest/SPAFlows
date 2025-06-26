@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- <form id="form1" action="" method="" >
+    Name: <input type="text" id="name1" name="name">
+   <input type="submit" value="submit" id="submit" name="submit">
+</form> -->
+
+<form action="" method="POST"> 
+    <select name="name" onchange="showCustomer(this.value)">
+      <option value="">Select a customer:</option>
+      <option value="Abraham">Abraham</option>
+      <option value="NORTS ">North/South</option>
+      <option value="WOLZA">Wolski Zajazd</option>
+    </select>
+  </form>
+
+  <div id="txtHint">Customer info will be listed here...</div>
+  
+  <script>
+  function showCustomer(str) {
+    if (str == "") {
+      document.getElementById("txtHint").innerHTML = "";
+      return;
+    }
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+      document.getElementById("txtHint").innerHTML = this.responseText;
+    }
+    xhttp.open("GET", "ajaxdb.php?q="+str);
+    xhttp.send();
+  }
+  </script>
+
+<!-- <script>
+    document.getElementById('submit').addEventListener('click', getName);
+    document.getElementById('form1').addEventListener('submit', getName);
+    function getName(e){
+        e.preventDefault();
+        var name = document.getElementById('name1').value;
+        var param = "name "+name;
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'ajaxdb.php?q='+name, true);
+        xhr.setRequestHeader('Content-type', 'aplication/x-wwww-form-urlencoded');
+        xhr.onload= function(){
+            console.log(this.responseText)
+        }
+        xhr.send(param)
+    }
+</script> -->
+</body>
+</html>
